@@ -1,0 +1,42 @@
+=== 1. Reading from input.txt (operator>>) ===
+Vector()
+Vector()
+A = n=5: 1 2 3 4.5 7
+arr (plain array, m=5): 10 20 30 40 50
+B = n=3: 100 200 300
+
+=== 2. Variant 2: Vector + double* ===
+Vector(int n) n=5
+C = A + arr = n=5: 11 22 33 44.5 57
+A after operation = n=5: 1 2 3 4.5 7 (unchanged)
+
+=== 3. operator[] ===
+C[0] = 11, C[4] = 57
+After C[0] = 100: n=5: 100 22 33 44.5 57
+~Vector() n=5
+
+=== 4. Copy constructor vs move constructor ===
+Vector(const Vector&) [copy] n=5
+After copy: A = n=5: 1 2 3 4.5 7
+            D = n=5: 1 2 3 4.5 7
+Vector(Vector&&) [move] n=5
+After move: D = n=0:  <- source is empty
+            E = n=5: 1 2 3 4.5 7
+
+=== 5. Copy assignment vs move assignment ===
+Vector()
+operator=(const Vector&) [copy] n=3
+After copy assignment: B = n=3: 100 200 300
+                       F = n=3: 100 200 300
+Vector()
+operator=(Vector&&) [move] n=3
+After move assignment: B = n=0:  <- source is empty
+                       G = n=3: 100 200 300
+
+=== 6. End of block: destructors ===
+~Vector() n=3
+~Vector() n=3
+~Vector() n=5
+~Vector() n=0
+~Vector() n=0
+~Vector() n=5
